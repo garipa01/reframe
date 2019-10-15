@@ -1,5 +1,10 @@
-name|continent|indepyear
-0|Benin|Africa|1960.0
-1|Burkina Faso|Africa|1960.0
-2|Gabon|Africa|1960.0
-3|Cameroon|Africa|1960.0
+SName|MajorId|DName
+0|joe|10|compsci
+1|max|10|compsci
+2|lee|10|compsci
+3|amy|20|math
+4|sue|20|math
+5|kim|20|math
+6|pat|20|math
+7|bob|30|drama
+8|art|30|drama

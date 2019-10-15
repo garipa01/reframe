@@ -1,5 +1,6 @@
-name|continent|region|governmentform
-0|Philippines|Asia|Southeast Asia|Republic
-1|Indonesia|Asia|Southeast Asia|Republic
-2|Laos|Asia|Southeast Asia|Republic
-3|Myanmar|Asia|Southeast Asia|Republic
+SectId|CourseId|Title|DeptId|DName
+0|13|12|db systems|10|compsci
+1|23|12|db systems|10|compsci
+2|33|32|calculus|20|math
+3|43|32|calculus|20|math
+4|53|62|elocution|30|drama

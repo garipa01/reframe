@@ -1,5 +1,7 @@
-name|region
-0|Netherlands Antilles|Caribbean
-1|Anguilla|Caribbean
-2|Antigua and Barbuda|Caribbean
-3|Aruba|Caribbean
+SId|SName|Grade
+0|1|joe|A
+1|1|joe|C
+2|2|amy|B+
+3|4|sue|B
+4|4|sue|A
+5|6|kim|A

@@ -3,23 +3,44 @@ import pytest
 from reframe import Relation
 
 @pytest.fixture
-def r():
-    return Relation('country.csv',sep="|")
+def course():
+    return Relation('tests/COURSE.csv',sep=",")
 
 
-def test_join_expected1(r):
-    r = r.query("continent == 'North America'").project(['name', 'region']).njoin(r.query('region == "Caribbean"').project(['name', 'region'])).head(4)
+@pytest.fixture
+def student():
+    return Relation('tests/STUDENT.csv',sep=",")
+
+
+@pytest.fixture
+def section():
+    return Relation('tests/SECTION.csv',sep=",")
+
+
+@pytest.fixture
+def enroll():
+    return Relation('tests/ENROLL.csv',sep=",")
+
+
+@pytest.fixture
+def dept():
+    return Relation('tests/DEPT.csv',sep=",")
+
+
+def test_join_expected1(course,student,section,enroll,dept):
+    r = student.project(["SId","SName"]).njoin(enroll.project(["StudentId","Grade"]).rename("StudentId","SId"))
     r_expected = Relation("tests/test_join_expected1.csv",sep="|")
     assert r.equals(r_expected)
 
 
-def test_join_expected2(r):
-    r = r.query("indepyear == 1960").project(['name','continent','indepyear']).njoin(r.query("continent == 'Africa'").project(['name','continent','indepyear'])).head(4)
+def test_join_expected2(course,student,section,enroll,dept):
+    r = student.project(["SName","MajorId"]).njoin(dept.project(["DId","DName"]).rename("DId","MajorId"))
     r_expected = Relation("tests/test_join_expected2.csv",sep="|")
     assert r.equals(r_expected)
 
 
-def test_join_expected3(r):
-    r = (r.query("continent == 'Asia'").project(['name','continent','region','governmentform']).njoin(r.query('region == "Southeast Asia"').project(['name','continent','region','governmentform']))).njoin(r.query("governmentform == 'Republic'").project(['name','continent','region','governmentform'])).head(4)
+def test_join_expected3(course,student,section,enroll,dept):
+    r = (section.project(["SectId","CourseId"]).njoin(course.project(["CId","Title","DeptId"]).rename("CId","CourseId"))).njoin(dept.project(["DId","DName"]).rename("DId","DeptId"))
     r_expected = Relation("tests/test_join_expected3.csv",sep="|")
-    assert r.equals(r_expected)
+    print(r)
+    assert r.equals(r_expected) 
